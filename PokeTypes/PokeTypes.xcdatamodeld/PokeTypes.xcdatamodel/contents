@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Pokemon" representedClassName="Pokemon" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="type1" maxCount="1" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="pokemonsType1" inverseEntity="PokemonType"/>
+        <relationship name="type2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="pokemonsType2" inverseEntity="PokemonType"/>
+    </entity>
+    <entity name="PokemonType" representedClassName="PokemonType" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="innefective" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
+        <relationship name="normal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
+        <relationship name="pokemonsType1" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="type1" inverseEntity="Pokemon"/>
+        <relationship name="pokemonsType2" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="type2" inverseEntity="Pokemon"/>
+        <relationship name="strong" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
+        <relationship name="weak" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Pokemon" positionX="-118.6484375" positionY="-178.35546875" width="128" height="103"/>
+        <element name="PokemonType" positionX="264.41796875" positionY="-139.3359375" width="128" height="163"/>
     </elements>
 </model>
