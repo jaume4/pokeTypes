@@ -53,6 +53,6 @@ struct PersistenceController {
             }
         })
         
-        let loader = Loader(persistence: self)
+//        let loader = Loader(persistence: self)
     }
 }

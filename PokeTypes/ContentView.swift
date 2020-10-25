@@ -12,21 +12,18 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Pokemon.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \PokemonType.id, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Pokemon>
+    private var items: FetchedResults<PokemonType>
 
     var body: some View {
-        Text("hola")
+        List {
+            ForEach(items) { item in
+                Text("\(item.name) type: \(item.name))")
+            }
+        }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
