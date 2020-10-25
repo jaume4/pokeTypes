@@ -26,6 +26,8 @@
 		1F9FD581254489820011103C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F9FD580254489820011103C /* Preview Assets.xcassets */; };
 		1F9FD583254489820011103C /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9FD582254489820011103C /* Persistence.swift */; };
 		1F9FD59125448A770011103C /* PokeTypes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F9FD58F25448A770011103C /* PokeTypes.xcdatamodeld */; };
+		1FA84C3E2545F3E400523582 /* PokemonSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA84C3D2545F3E400523582 /* PokemonSearch.swift */; };
+		1FA84C4725460D3600523582 /* PokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA84C4625460D3500523582 /* PokemonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		1F9FD582254489820011103C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1F9FD587254489820011103C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F9FD59025448A770011103C /* PokeTypes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PokeTypes.xcdatamodel; sourceTree = "<group>"; };
+		1FA84C3D2545F3E400523582 /* PokemonSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSearch.swift; sourceTree = "<group>"; };
+		1FA84C4625460D3500523582 /* PokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +123,8 @@
 			children = (
 				1F9A828E2544B0FD00BCD1D0 /* CoreData */,
 				1F9FD579254489810011103C /* PokeTypesApp.swift */,
-				1F112B422545B66800BF8596 /* SelectorView.swift */,
-				1F112B522545D48300BF8596 /* CapsuleModifier.swift */,
-				1F112B3F2545B36200BF8596 /* TypeSelector.swift */,
-				1F112B1A2545AD8B00BF8596 /* TypeGridView.swift */,
+				1FA84C412545F5EC00523582 /* Models */,
+				1FA84C402545F5D000523582 /* Views */,
 				1F5CA6272544B67D00DD42BA /* Supporting Files */,
 				1F5CA6252544B65700DD42BA /* DataLoader */,
 				1F9FD57F254489820011103C /* Preview Content */,
@@ -136,6 +138,42 @@
 				1F9FD580254489820011103C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1FA84C402545F5D000523582 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1FA84C4525460D2000523582 /* Standalone */,
+				1FA84C422545F61600523582 /* Modifiers */,
+				1FA84C3D2545F3E400523582 /* PokemonSearch.swift */,
+				1F112B422545B66800BF8596 /* SelectorView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1FA84C412545F5EC00523582 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1F112B3F2545B36200BF8596 /* TypeSelector.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1FA84C422545F61600523582 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1F112B522545D48300BF8596 /* CapsuleModifier.swift */,
+			);
+			name = Modifiers;
+			sourceTree = "<group>";
+		};
+		1FA84C4525460D2000523582 /* Standalone */ = {
+			isa = PBXGroup;
+			children = (
+				1F112B1A2545AD8B00BF8596 /* TypeGridView.swift */,
+				1FA84C4625460D3500523582 /* PokemonView.swift */,
+			);
+			name = Standalone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,7 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA84C4725460D3600523582 /* PokemonView.swift in Sources */,
 				1F27F17925449BE4002119E7 /* DataLoader.swift in Sources */,
+				1FA84C3E2545F3E400523582 /* PokemonSearch.swift in Sources */,
 				1F9A82952544B10600BCD1D0 /* PokemonType.swift in Sources */,
 				1F112B1B2545AD8B00BF8596 /* TypeGridView.swift in Sources */,
 				1F9FD583254489820011103C /* Persistence.swift in Sources */,

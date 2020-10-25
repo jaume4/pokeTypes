@@ -39,7 +39,9 @@ struct TypeGridView: View {
                     Section(header:
                                 Text(tier.damage.title)
                                 .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body)),
-                            footer: Divider()) {
+                            footer: Rectangle()
+                                .frame(maxWidth: .infinity, maxHeight: 2)
+                    ) {
                         
                         
                         if tier.types.isEmpty {

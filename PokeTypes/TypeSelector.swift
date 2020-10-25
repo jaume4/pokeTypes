@@ -9,6 +9,7 @@ import SwiftUI
 
 final class TypeSelector: ObservableObject {
     
+    @Published var selectedName: String?
     @Published var selectedTypes: ContiguousArray<PokemonType> = []
     
     var type1: PokemonType? {
@@ -30,6 +31,10 @@ final class TypeSelector: ObservableObject {
             selectedTypes.removeFirst()
         }
         selectedTypes.append(type)
+    }
+    
+    func removeSelection() {
+        selectedTypes.removeAll()
     }
     
     var allTypes: [(damage: DamageType, types: [PokemonType])] {

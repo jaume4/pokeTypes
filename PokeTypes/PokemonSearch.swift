@@ -1,0 +1,95 @@
+//
+//  PokemonSearch.swift
+//  PokeTypes
+//
+//  Created by Jaume on 25/10/2020.
+//
+
+import SwiftUI
+
+struct PokemonSearch: View {
+    
+    @State var filter = ""
+    var action: ((Pokemon) -> ())?
+    
+    var body: some View {
+        ZStack() {
+            if filter.isEmpty {
+                Text("Introduce el nombre para iniciar la búsqueda.")
+                    .disableAutocorrection(true)
+                    .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
+            } else {
+                ScrollView {
+                    Spacer(minLength: 60)
+                    PokemonFilteredView(filter: filter, action: action)
+                }
+            }
+            
+            VStack {
+                TextField("Búsqueda", text: $filter)
+                    .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
+                    .padding()
+                    
+                    
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.secondary, lineWidth: 1)
+                    )
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(UIColor.systemBackground))
+                            .edgesIgnoringSafeArea(.top))
+                Spacer()
+            }
+            
+        }
+        .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+    }
+    
+}
+
+struct PokemonFilteredView: View {
+    
+    var fetchRequest: FetchRequest<Pokemon>
+    var action: ((Pokemon) -> ())?
+    
+    var body: some View {
+        LazyVStack {
+            ForEach(fetchRequest.wrappedValue, id: \.name) { pokemon in
+                HStack {
+                    PokemonView(name: pokemon.name, color1: Color("\(pokemon.type1.id)"), color2: pokemon.type2.map { Color("\($0.id)") })
+                        .onTapGesture {
+                            action?(pokemon)
+                        }
+                    Spacer()
+                }
+            }
+        }
+    }
+    
+    init(filter: String, action: ((Pokemon) -> ())?) {
+        self.action = action
+        fetchRequest = FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Pokemon.pokedex, ascending: true)], predicate: NSPredicate(format: "name CONTAINS[c] %@", filter))
+    }
+}
+
+struct PokemonSearch_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            Color(UIColor.systemBackground)
+                .sheet(isPresented: .constant(true)) {
+                    PokemonSearch(filter: "")
+                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                    
+                    
+                }
+            
+            Color(UIColor.systemBackground)
+                .preferredColorScheme(.dark)
+                .sheet(isPresented: .constant(true)) {
+                    PokemonSearch(filter: "")
+                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                }
+        }
+    }
+}
