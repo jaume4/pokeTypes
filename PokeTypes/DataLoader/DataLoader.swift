@@ -51,13 +51,17 @@ struct Loader {
             
             switch multiplierInfo.damageFactor {
             case 0:
-                damageType.addToInnefective(targetType)
+                damageType.addToInnefectiveAgainst(targetType)
+//                targetType.addToInnefectiveTo(damageType)
             case 50:
-                damageType.addToWeak(targetType)
+                damageType.addToWeakAgainst(targetType)
+//                targetType.addToStrongTo(damageType)
             case 100:
-                damageType.addToNormal(targetType)
+                damageType.addToNormalAgainst(targetType)
+//                targetType.addToNormalTo(damageType)
             case 200:
-                damageType.addToStrong(targetType)
+                damageType.addToStrongAgainst(targetType)
+//                targetType.addToWeakTo(damageType)
             default: fatalError("Unexpected factor")
             }
             

@@ -1,8 +1,8 @@
 //
 //  PokemonType+CoreDataProperties.swift
-//  
 //
-//  Created by Jaume on 24/10/20.
+//
+//  Created by Jaume on 25/10/20.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(PokemonType)
-class PokemonType: NSManagedObject {
+final class PokemonType: NSManagedObject {
 
 }
 
@@ -24,46 +24,84 @@ extension PokemonType {
 
     @NSManaged var id: Int16
     @NSManaged var name: String
-    @NSManaged var innefective: Set<PokemonType>
-    @NSManaged var normal: Set<PokemonType>
-    @NSManaged var pokemonsType1: Set<Pokemon>
-    @NSManaged var pokemonsType2: Set<Pokemon>
-    @NSManaged var strong: Set<PokemonType>
-    @NSManaged var weak: Set<PokemonType>
+    @NSManaged var innefectiveAgainst: Set<PokemonType>
+    @NSManaged var innefectiveTo: Set<PokemonType>
+    @NSManaged var normalAgainst: Set<PokemonType>
+    @NSManaged var normalTo: Set<PokemonType>
+    @NSManaged var pokemonsType1: Set<PokemonType>
+    @NSManaged var pokemonsType2: Set<PokemonType>
+    @NSManaged var strongAgainst: Set<PokemonType>
+    @NSManaged var strongTo: Set<PokemonType>
+    @NSManaged var weakAgainst: Set<PokemonType>
+    @NSManaged var weakTo: Set<PokemonType>
 
 }
 
-// MARK: Generated accessors for innefective
+// MARK: Generated accessors for innefectiveAgainst
 extension PokemonType {
 
-    @objc(addInnefectiveObject:)
-    @NSManaged func addToInnefective(_ value: PokemonType)
+    @objc(addInnefectiveAgainstObject:)
+    @NSManaged func addToInnefectiveAgainst(_ value: PokemonType)
 
-    @objc(removeInnefectiveObject:)
-    @NSManaged func removeFromInnefective(_ value: PokemonType)
+    @objc(removeInnefectiveAgainstObject:)
+    @NSManaged func removeFromInnefectiveAgainst(_ value: PokemonType)
 
-    @objc(addInnefective:)
-    @NSManaged func addToInnefective(_ values: NSSet)
+    @objc(addInnefectiveAgainst:)
+    @NSManaged func addToInnefectiveAgainst(_ values: Set<PokemonType>)
 
-    @objc(removeInnefective:)
-    @NSManaged func removeFromInnefective(_ values: NSSet)
+    @objc(removeInnefectiveAgainst:)
+    @NSManaged func removeFromInnefectiveAgainst(_ values: Set<PokemonType>)
 
 }
 
-// MARK: Generated accessors for normal
+// MARK: Generated accessors for innefectiveTo
 extension PokemonType {
 
-    @objc(addNormalObject:)
-    @NSManaged func addToNormal(_ value: PokemonType)
+    @objc(addInnefectiveToObject:)
+    @NSManaged func addToInnefectiveTo(_ value: PokemonType)
 
-    @objc(removeNormalObject:)
-    @NSManaged func removeFromNormal(_ value: PokemonType)
+    @objc(removeInnefectiveToObject:)
+    @NSManaged func removeFromInnefectiveTo(_ value: PokemonType)
 
-    @objc(addNormal:)
-    @NSManaged func addToNormal(_ values: NSSet)
+    @objc(addInnefectiveTo:)
+    @NSManaged func addToInnefectiveTo(_ values: Set<PokemonType>)
 
-    @objc(removeNormal:)
-    @NSManaged func removeFromNormal(_ values: NSSet)
+    @objc(removeInnefectiveTo:)
+    @NSManaged func removeFromInnefectiveTo(_ values: Set<PokemonType>)
+
+}
+
+// MARK: Generated accessors for normalAgainst
+extension PokemonType {
+
+    @objc(addNormalAgainstObject:)
+    @NSManaged func addToNormalAgainst(_ value: PokemonType)
+
+    @objc(removeNormalAgainstObject:)
+    @NSManaged func removeFromNormalAgainst(_ value: PokemonType)
+
+    @objc(addNormalAgainst:)
+    @NSManaged func addToNormalAgainst(_ values: Set<PokemonType>)
+
+    @objc(removeNormalAgainst:)
+    @NSManaged func removeFromNormalAgainst(_ values: Set<PokemonType>)
+
+}
+
+// MARK: Generated accessors for normalTo
+extension PokemonType {
+
+    @objc(addNormalToObject:)
+    @NSManaged func addToNormalTo(_ value: PokemonType)
+
+    @objc(removeNormalToObject:)
+    @NSManaged func removeFromNormalTo(_ value: PokemonType)
+
+    @objc(addNormalTo:)
+    @NSManaged func addToNormalTo(_ values: Set<PokemonType>)
+
+    @objc(removeNormalTo:)
+    @NSManaged func removeFromNormalTo(_ values: Set<PokemonType>)
 
 }
 
@@ -77,10 +115,10 @@ extension PokemonType {
     @NSManaged func removeFromPokemonsType1(_ value: Pokemon)
 
     @objc(addPokemonsType1:)
-    @NSManaged func addToPokemonsType1(_ values: NSSet)
+    @NSManaged func addToPokemonsType1(_ values: Set<PokemonType>)
 
     @objc(removePokemonsType1:)
-    @NSManaged func removeFromPokemonsType1(_ values: NSSet)
+    @NSManaged func removeFromPokemonsType1(_ values: Set<PokemonType>)
 
 }
 
@@ -94,47 +132,89 @@ extension PokemonType {
     @NSManaged func removeFromPokemonsType2(_ value: Pokemon)
 
     @objc(addPokemonsType2:)
-    @NSManaged func addToPokemonsType2(_ values: NSSet)
+    @NSManaged func addToPokemonsType2(_ values: Set<PokemonType>)
 
     @objc(removePokemonsType2:)
-    @NSManaged func removeFromPokemonsType2(_ values: NSSet)
+    @NSManaged func removeFromPokemonsType2(_ values: Set<PokemonType>)
 
 }
 
-// MARK: Generated accessors for strong
+// MARK: Generated accessors for strongAgainst
 extension PokemonType {
 
-    @objc(addStrongObject:)
-    @NSManaged func addToStrong(_ value: PokemonType)
+    @objc(addStrongAgainstObject:)
+    @NSManaged func addToStrongAgainst(_ value: PokemonType)
 
-    @objc(removeStrongObject:)
-    @NSManaged func removeFromStrong(_ value: PokemonType)
+    @objc(removeStrongAgainstObject:)
+    @NSManaged func removeFromStrongAgainst(_ value: PokemonType)
 
-    @objc(addStrong:)
-    @NSManaged func addToStrong(_ values: NSSet)
+    @objc(addStrongAgainst:)
+    @NSManaged func addToStrongAgainst(_ values: Set<PokemonType>)
 
-    @objc(removeStrong:)
-    @NSManaged func removeFromStrong(_ values: NSSet)
+    @objc(removeStrongAgainst:)
+    @NSManaged func removeFromStrongAgainst(_ values: Set<PokemonType>)
 
 }
 
-// MARK: Generated accessors for weak
+// MARK: Generated accessors for strongTo
 extension PokemonType {
 
-    @objc(addWeakObject:)
-    @NSManaged func addToWeak(_ value: PokemonType)
+    @objc(addStrongToObject:)
+    @NSManaged func addToStrongTo(_ value: PokemonType)
 
-    @objc(removeWeakObject:)
-    @NSManaged func removeFromWeak(_ value: PokemonType)
+    @objc(removeStrongToObject:)
+    @NSManaged func removeFromStrongTo(_ value: PokemonType)
 
-    @objc(addWeak:)
-    @NSManaged func addToWeak(_ values: NSSet)
+    @objc(addStrongTo:)
+    @NSManaged func addToStrongTo(_ values: Set<PokemonType>)
 
-    @objc(removeWeak:)
-    @NSManaged func removeFromWeak(_ values: NSSet)
+    @objc(removeStrongTo:)
+    @NSManaged func removeFromStrongTo(_ values: Set<PokemonType>)
+
+}
+
+// MARK: Generated accessors for weakAgainst
+extension PokemonType {
+
+    @objc(addWeakAgainstObject:)
+    @NSManaged func addToWeakAgainst(_ value: PokemonType)
+
+    @objc(removeWeakAgainstObject:)
+    @NSManaged func removeFromWeakAgainst(_ value: PokemonType)
+
+    @objc(addWeakAgainst:)
+    @NSManaged func addToWeakAgainst(_ values: Set<PokemonType>)
+
+    @objc(removeWeakAgainst:)
+    @NSManaged func removeFromWeakAgainst(_ values: Set<PokemonType>)
+
+}
+
+// MARK: Generated accessors for weakTo
+extension PokemonType {
+
+    @objc(addWeakToObject:)
+    @NSManaged func addToWeakTo(_ value: PokemonType)
+
+    @objc(removeWeakToObject:)
+    @NSManaged func removeFromWeakTo(_ value: PokemonType)
+
+    @objc(addWeakTo:)
+    @NSManaged func addToWeakTo(_ values: Set<PokemonType>)
+
+    @objc(removeWeakTo:)
+    @NSManaged func removeFromWeakTo(_ values: Set<PokemonType>)
 
 }
 
 extension PokemonType : Identifiable {
 
+}
+
+extension PokemonType: Comparable {
+    static func < (lhs: PokemonType, rhs: PokemonType) -> Bool {
+        return lhs.id < rhs.id
+    }
+    
+    
 }

@@ -1,6 +1,6 @@
 //
 //  Pokemon+CoreDataProperties.swift
-//  
+//
 //
 //  Created by Jaume on 24/10/20.
 //
@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Pokemon)
-class Pokemon: NSManagedObject {
+final class Pokemon: NSManagedObject {
 
 }
 

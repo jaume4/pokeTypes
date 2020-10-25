@@ -9,15 +9,19 @@
     <entity name="PokemonType" representedClassName="PokemonType" syncable="YES">
         <attribute name="id" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="innefective" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
-        <relationship name="normal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
+        <relationship name="innefectiveAgainst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="innefectiveTo" inverseEntity="PokemonType"/>
+        <relationship name="innefectiveTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="innefectiveAgainst" inverseEntity="PokemonType"/>
+        <relationship name="normalAgainst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="normalTo" inverseEntity="PokemonType"/>
+        <relationship name="normalTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="normalAgainst" inverseEntity="PokemonType"/>
         <relationship name="pokemonsType1" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="type1" inverseEntity="Pokemon"/>
         <relationship name="pokemonsType2" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="type2" inverseEntity="Pokemon"/>
-        <relationship name="strong" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
-        <relationship name="weak" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType"/>
+        <relationship name="strongAgainst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="strongTo" inverseEntity="PokemonType"/>
+        <relationship name="strongTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="strongAgainst" inverseEntity="PokemonType"/>
+        <relationship name="weakAgainst" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="weakTo" inverseEntity="PokemonType"/>
+        <relationship name="weakTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PokemonType" inverseName="weakAgainst" inverseEntity="PokemonType"/>
     </entity>
     <elements>
         <element name="Pokemon" positionX="-118.6484375" positionY="-178.35546875" width="128" height="103"/>
-        <element name="PokemonType" positionX="264.41796875" positionY="-139.3359375" width="128" height="163"/>
+        <element name="PokemonType" positionX="264.41796875" positionY="-139.3359375" width="128" height="223"/>
     </elements>
 </model>
