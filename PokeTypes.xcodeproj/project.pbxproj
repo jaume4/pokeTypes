@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F112B0A2545663F00BF8596 /* PokeTypes.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 1F112B092545663F00BF8596 /* PokeTypes.sqlite */; };
 		1F27F173254493AE002119E7 /* pokemons.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F16F254493AE002119E7 /* pokemons.json */; };
 		1F27F174254493AE002119E7 /* damage multiplier.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F170254493AE002119E7 /* damage multiplier.json */; };
 		1F27F175254493AE002119E7 /* pokemon types.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F171254493AE002119E7 /* pokemon types.json */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F112B092545663F00BF8596 /* PokeTypes.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = PokeTypes.sqlite; sourceTree = "<group>"; };
 		1F27F16F254493AE002119E7 /* pokemons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokemons.json; sourceTree = "<group>"; };
 		1F27F170254493AE002119E7 /* damage multiplier.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "damage multiplier.json"; sourceTree = "<group>"; };
 		1F27F171254493AE002119E7 /* pokemon types.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pokemon types.json"; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		1F5CA6272544B67D00DD42BA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1F112B092545663F00BF8596 /* PokeTypes.sqlite */,
 				1F9FD57D254489820011103C /* Assets.xcassets */,
 				1F9FD58F25448A770011103C /* PokeTypes.xcdatamodeld */,
 				1F9FD587254489820011103C /* Info.plist */,
@@ -184,6 +187,7 @@
 				1F5CA62C2544D18700DD42BA /* pokedex.json in Resources */,
 				1F27F175254493AE002119E7 /* pokemon types.json in Resources */,
 				1F27F173254493AE002119E7 /* pokemons.json in Resources */,
+				1F112B0A2545663F00BF8596 /* PokeTypes.sqlite in Resources */,
 				1F27F176254493AE002119E7 /* type names.json in Resources */,
 				1F9FD581254489820011103C /* Preview Assets.xcassets in Resources */,
 				1F9FD57E254489820011103C /* Assets.xcassets in Resources */,
