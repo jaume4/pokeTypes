@@ -12,6 +12,7 @@
 		1F112B402545B36200BF8596 /* TypeSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F112B3F2545B36200BF8596 /* TypeSelector.swift */; };
 		1F112B432545B66800BF8596 /* SelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F112B422545B66800BF8596 /* SelectorView.swift */; };
 		1F112B472545BC9C00BF8596 /* PKMN RBYGSC.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F112B462545BC9C00BF8596 /* PKMN RBYGSC.ttf */; };
+		1F112B532545D48300BF8596 /* CapsuleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F112B522545D48300BF8596 /* CapsuleModifier.swift */; };
 		1F27F173254493AE002119E7 /* pokemons.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F16F254493AE002119E7 /* pokemons.json */; };
 		1F27F174254493AE002119E7 /* damage multiplier.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F170254493AE002119E7 /* damage multiplier.json */; };
 		1F27F175254493AE002119E7 /* pokemon types.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F27F171254493AE002119E7 /* pokemon types.json */; };
@@ -33,6 +34,7 @@
 		1F112B3F2545B36200BF8596 /* TypeSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSelector.swift; sourceTree = "<group>"; };
 		1F112B422545B66800BF8596 /* SelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorView.swift; sourceTree = "<group>"; };
 		1F112B462545BC9C00BF8596 /* PKMN RBYGSC.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PKMN RBYGSC.ttf"; sourceTree = "<group>"; };
+		1F112B522545D48300BF8596 /* CapsuleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleModifier.swift; sourceTree = "<group>"; };
 		1F27F16F254493AE002119E7 /* pokemons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokemons.json; sourceTree = "<group>"; };
 		1F27F170254493AE002119E7 /* damage multiplier.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "damage multiplier.json"; sourceTree = "<group>"; };
 		1F27F171254493AE002119E7 /* pokemon types.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "pokemon types.json"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				1F9A828E2544B0FD00BCD1D0 /* CoreData */,
 				1F9FD579254489810011103C /* PokeTypesApp.swift */,
 				1F112B422545B66800BF8596 /* SelectorView.swift */,
+				1F112B522545D48300BF8596 /* CapsuleModifier.swift */,
 				1F112B3F2545B36200BF8596 /* TypeSelector.swift */,
 				1F112B1A2545AD8B00BF8596 /* TypeGridView.swift */,
 				1F5CA6272544B67D00DD42BA /* Supporting Files */,
@@ -217,6 +220,7 @@
 				1F9FD583254489820011103C /* Persistence.swift in Sources */,
 				1F112B402545B36200BF8596 /* TypeSelector.swift in Sources */,
 				1F9FD59125448A770011103C /* PokeTypes.xcdatamodeld in Sources */,
+				1F112B532545D48300BF8596 /* CapsuleModifier.swift in Sources */,
 				1F9A82962544B10600BCD1D0 /* Pokemon.swift in Sources */,
 				1F9FD57A254489810011103C /* PokeTypesApp.swift in Sources */,
 				1F112B432545B66800BF8596 /* SelectorView.swift in Sources */,

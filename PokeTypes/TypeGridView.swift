@@ -36,22 +36,21 @@ struct TypeGridView: View {
                 
                 ForEach(types, id: \.damage.title) { tier in
                     
-                    Section(header: Text(tier.damage.title), footer: Divider()) {
-                    
-                    
+                    Section(header:
+                                Text(tier.damage.title)
+                                .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body)),
+                            footer: Divider()) {
+                        
+                        
                         if tier.types.isEmpty {
                             Text("-")
-                                .foregroundColor(.white)
+                                .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                                 .padding(6)
-                                .background(Color("0"))
-                                .cornerRadius(15)
                         } else {
                             ForEach(tier.types) { type in
                                 Text(type.name)
                                     .foregroundColor(.white)
-                                    .padding(6)
-                                    .background(Color("\(type.id)"))
-                                    .cornerRadius(15)
+                                    .modifier(CapsuleModifier(selected: false, id: type.id))
                             }
                         }
                     }

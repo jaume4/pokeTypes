@@ -21,24 +21,23 @@ struct SelectorView: View {
         ScrollView {
             
             VStack{
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 300))]) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120, maximum: 300))]) {
                     ForEach(items) { type in
                         Text(type.name)
                             .foregroundColor(.white)
-                            .padding(6)
-                            .background(selection.selectedTypes.contains(type) ? Color.black : Color("\(type.id)"))
-                            .cornerRadius(15)
+                            .modifier(CapsuleModifier(selected: selection.selectedTypes.contains(type), id: type.id))
                             .onTapGesture{
                                 selection.select(type: type)
                             }
                     }
                 }
                 
+                Spacer(minLength: 50)
                 Divider()
                 
                 if selection.selectedTypes.isEmpty {
-                    Spacer(minLength: 50)
-                    Text("Selecciona tipos para empezar.")
+                    Text("Selecciona los tipos para empezar.")
+                        .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                 } else {
                     TypeGridView(types: selection.allTypes)
                 }
@@ -50,7 +49,12 @@ struct SelectorView: View {
 
 struct SelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectorView()
-            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        Group {
+            SelectorView()
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            SelectorView()
+                .preferredColorScheme(.dark)
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        }
     }
 }
