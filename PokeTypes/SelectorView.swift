@@ -24,7 +24,6 @@ struct SelectorView: View {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 120, maximum: 300))]) {
                     ForEach(items) { type in
                         Text(type.name)
-                            .foregroundColor(.white)
                             .modifier(CapsuleModifier(selected: selection.selectedTypes.contains(type), id: type.id))
                             .onTapGesture{
                                 selection.select(type: type)
@@ -33,7 +32,6 @@ struct SelectorView: View {
                 }
                 
                 Spacer(minLength: 50)
-                Divider()
                 
                 if selection.selectedTypes.isEmpty {
                     Text("Selecciona los tipos para empezar.")

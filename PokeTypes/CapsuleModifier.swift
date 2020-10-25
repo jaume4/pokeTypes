@@ -15,12 +15,14 @@ struct CapsuleModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .foregroundColor(selected ?  Color(UIColor.systemBackground) : .white)
             .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
             .padding(6)
             .background(
                 Group {
                     if selected {
-                        Color.black
+                        Color(UIColor.label)
+                        
                     } else {
                         RadialGradient(gradient: Gradient(stops: [Gradient.Stop(color:  Color("\(id)"), location: 0), Gradient.Stop(color: Color("\(id)").opacity(0.5), location: 0.9)]), center: .center, startRadius: 0, endRadius: 100)
                     }
@@ -34,4 +36,45 @@ struct CapsuleModifier: ViewModifier {
             )
     }
     
+}
+
+struct CapsuleModifier_Previews: PreviewProvider {
+    
+    static let range: Range<Int16> = 0..<19
+    
+    static var previews: some View {
+        Group {
+            ScrollView {
+                ForEach(range) { colorIndex in
+                    VStack {
+                        HStack {
+                            Text("Label")
+                                .modifier(CapsuleModifier(selected: false, id: colorIndex))
+                            Text("Label")
+                                .modifier(CapsuleModifier(selected: true, id: colorIndex))
+                        }
+                    }
+                }
+            }
+            ScrollView {
+                ForEach(range) { colorIndex in
+                    VStack {
+                        HStack {
+                            Text("Label")
+                                .modifier(CapsuleModifier(selected: false, id: colorIndex))
+                            Text("Label")
+                                .modifier(CapsuleModifier(selected: true, id: colorIndex))
+                        }
+                    }
+                }
+            }
+            .preferredColorScheme(.dark)
+        }
+    }
+}
+
+extension Int16: Identifiable {
+    public var id: Int16 {
+        self
+    }
 }

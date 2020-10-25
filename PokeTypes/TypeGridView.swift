@@ -32,7 +32,7 @@ struct TypeGridView: View {
     var body: some View {
         
         VStack{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 300))]) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 120, maximum: 300))]) {
                 
                 ForEach(types, id: \.damage.title) { tier in
                     
