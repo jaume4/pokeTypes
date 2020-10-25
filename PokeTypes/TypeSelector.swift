@@ -1,19 +1,49 @@
 //
-//  ContentView.swift
+//  TypeSelector.swift
 //  PokeTypes
 //
-//  Created by Jaume on 24/10/2020.
+//  Created by Jaume on 25/10/2020.
 //
 
 import SwiftUI
-import CoreData
 
-class Model: ObservableObject {
+final class TypeSelector: ObservableObject {
     
-    @Published var type1: PokemonType?
-    @Published var type2: PokemonType?
+    @Published var selectedTypes: ContiguousArray<PokemonType> = []
     
-    var superWeak: Set<PokemonType> {
+    var type1: PokemonType? {
+        selectedTypes.first
+    }
+    
+    var type2: PokemonType? {
+        selectedTypes.count > 1 ? selectedTypes.last : nil
+    }
+    
+    func select(type: PokemonType) {
+        
+        if let index = selectedTypes.firstIndex(where: {$0 == type}) { //Remove if already selected
+            selectedTypes.remove(at: index)
+            return
+        }
+        
+        if selectedTypes.count > 1 {
+            selectedTypes.removeFirst()
+        }
+        selectedTypes.append(type)
+    }
+    
+    var allTypes: [(damage: DamageType, types: [PokemonType])] {
+        return [
+            (.superWeak, Array(superWeak).sorted()),
+            (.weak, Array(weak).sorted()),
+            (.normal, Array(normal).sorted()),
+            (.strong, Array(strong).sorted()),
+            (.superStrong, Array(superStrong).sorted()),
+            (.inmune, Array(inmune).sorted())
+        ]
+    }
+    
+    private var superWeak: Set<PokemonType> {
         
         let type1StrongTo = type1?.strongTo ?? []
         let type2StrongTo = type2?.strongTo ?? []
@@ -21,7 +51,7 @@ class Model: ObservableObject {
         return type1StrongTo.intersection(type2StrongTo)
     }
     
-    var weak: Set<PokemonType> {
+    private var weak: Set<PokemonType> {
         
         let type1StrongTo = type1?.strongTo ?? []
         let type2StrongTo = type2?.strongTo ?? []
@@ -38,7 +68,7 @@ class Model: ObservableObject {
         return weakTo
     }
     
-    var normal: Set<PokemonType> {
+    private var normal: Set<PokemonType> {
         
         let type1NormalTo = type1?.normalTo ?? []
         let type2NormalTo = type2?.normalTo ?? []
@@ -63,7 +93,7 @@ class Model: ObservableObject {
         return normalTo.union(normalToMultiply)
     }
     
-    var strong: Set<PokemonType> {
+    private var strong: Set<PokemonType> {
         let type1WeakTo = type1?.weakTo ?? []
         let type2WeakTo = type2?.weakTo ?? []
         
@@ -79,65 +109,16 @@ class Model: ObservableObject {
         return strongTo
     }
     
-    var superStrong: Set<PokemonType> {
+    private var superStrong: Set<PokemonType> {
         let type1WeakTo = type1?.weakTo ?? []
         let type2WeakTo = type2?.weakTo ?? []
         return type1WeakTo.intersection(type2WeakTo)
     }
     
-    var inmune: Set<PokemonType> {
+    private var inmune: Set<PokemonType> {
         let type1Innefective = type1?.innefectiveTo ?? []
         let type2Innefective = type2?.innefectiveTo ?? []
         return type1Innefective.union(type2Innefective)
     }
     
-}
-
-struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \PokemonType.name, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<PokemonType>
-    
-    @StateObject var selection = Model()
-
-    var body: some View {
-        
-        VStack {
-            
-            Picker("tipo1", selection: $selection.type1) {
-                ForEach(items.filter{ $0 != selection.type2 }) {
-                    Text($0.name).tag(Optional.some($0))
-                }
-            }
-            
-            Picker("tipo2", selection: $selection.type2) {
-                ForEach(items.filter{ $0 != selection.type1 }) {
-                    Text($0.name).tag(Optional.some($0))
-                }
-            }
-            
-            VStack(alignment: .leading) {
-                Text("Superdébil a: \(format(selection.superWeak))")
-                Text("Débil a : \(format(selection.weak))")
-                Text("Normal: \(format(selection.normal))")
-                Text("Resistente a: \(format(selection.strong))")
-                Text("Superresistente a: \(format(selection.superStrong))")
-                Text("Inmune a: \(format(selection.inmune))")
-            }.padding()
-            
-        }
-    }
-    
-    func format(_ set: Set<PokemonType>) -> String {
-        return set.isEmpty ? "-" : set.map{ $0.name }.sorted().joined(separator: ", ")
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-    }
 }

@@ -13,7 +13,7 @@ struct PokeTypesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SelectorView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

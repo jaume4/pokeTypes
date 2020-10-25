@@ -36,14 +36,9 @@ struct Loader {
         types = spaTypes.map { typeInfo -> PokemonType in
             let type = PokemonType(context: persistence.container.viewContext)
             type.id = typeInfo.typeID
-            type.name = typeInfo.name
+            type.name = typeInfo.name.uppercased()
             return type
         }
-        
-        let defaultType = PokemonType(context: persistence.container.viewContext)
-        defaultType.name = "-"
-        defaultType.id = 0
-        types.insert(defaultType, at: 0)
         
         savedMultipliers.forEach { multiplierInfo in
             let damageType = types.first(where: {$0.id == multiplierInfo.damageTypeID})!
@@ -52,16 +47,12 @@ struct Loader {
             switch multiplierInfo.damageFactor {
             case 0:
                 damageType.addToInnefectiveAgainst(targetType)
-//                targetType.addToInnefectiveTo(damageType)
             case 50:
                 damageType.addToWeakAgainst(targetType)
-//                targetType.addToStrongTo(damageType)
             case 100:
                 damageType.addToNormalAgainst(targetType)
-//                targetType.addToNormalTo(damageType)
             case 200:
                 damageType.addToStrongAgainst(targetType)
-//                targetType.addToWeakTo(damageType)
             default: fatalError("Unexpected factor")
             }
             
