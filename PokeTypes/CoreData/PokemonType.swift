@@ -213,7 +213,7 @@ extension PokemonType : Identifiable {
 
 extension PokemonType: Comparable {
     static func < (lhs: PokemonType, rhs: PokemonType) -> Bool {
-        return lhs.id < rhs.id
+        return lhs.name < rhs.name
     }
     
     

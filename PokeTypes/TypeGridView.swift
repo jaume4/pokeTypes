@@ -43,14 +43,14 @@ struct TypeGridView: View {
                             Text("-")
                                 .foregroundColor(.white)
                                 .padding(6)
-                                .background(Color.red)
+                                .background(Color("0"))
                                 .cornerRadius(15)
                         } else {
                             ForEach(tier.types) { type in
                                 Text(type.name)
                                     .foregroundColor(.white)
                                     .padding(6)
-                                    .background(Color.red)
+                                    .background(Color("\(type.id)"))
                                     .cornerRadius(15)
                             }
                         }
@@ -68,8 +68,14 @@ struct TypeGridView_Previews: PreviewProvider {
     static let pokemons = try! PersistenceController.shared.container.viewContext.fetch(fetchTypes)
     
     static var previews: some View {
-        ScrollView {
-            TypeGridView(types: [(.normal, pokemons)])
+        Group {
+            ScrollView {
+                TypeGridView(types: [(.normal, pokemons)])
+            }
+            ScrollView {
+                TypeGridView(types: [(.normal, pokemons)])
+            }
+            .preferredColorScheme(.dark)
         }
     }
 }

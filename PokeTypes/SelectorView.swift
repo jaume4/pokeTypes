@@ -26,7 +26,7 @@ struct SelectorView: View {
                         Text(type.name)
                             .foregroundColor(.white)
                             .padding(6)
-                            .background(selection.selectedTypes.contains(type) ? Color.black : Color.red)
+                            .background(selection.selectedTypes.contains(type) ? Color.black : Color("\(type.id)"))
                             .cornerRadius(15)
                             .onTapGesture{
                                 selection.select(type: type)
