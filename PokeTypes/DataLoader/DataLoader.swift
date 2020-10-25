@@ -40,6 +40,11 @@ struct Loader {
             return type
         }
         
+        let defaultType = PokemonType(context: persistence.container.viewContext)
+        defaultType.name = "-"
+        defaultType.id = 0
+        types.insert(defaultType, at: 0)
+        
         savedMultipliers.forEach { multiplierInfo in
             let damageType = types.first(where: {$0.id == multiplierInfo.damageTypeID})!
             let targetType = types.first(where: {$0.id == multiplierInfo.targetTypeID})!
