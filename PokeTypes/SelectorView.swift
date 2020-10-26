@@ -34,40 +34,39 @@ struct SelectorView: View {
                     }
                 }
                 
-                if let name = selectedPokemon {
-                    Text(name)
-                        .font(.custom("PKMN RBYGSC", size: 16, relativeTo: .body))
-                        .padding(.all, 10)
-                        .overlay(
-                            Rectangle()
-                                .stroke(Color(UIColor.label))
-                        )
-                        .padding(.top, 10)
-                    
-                }
+                Spacer(minLength: 40)
                 
-                Spacer(minLength: 50)
+                Button(action: {
+                    presenting = true
+                }, label: {
+                    Group {
+                        if let name = selectedPokemon {
+                            Text(name)
+                        } else {
+                            Text("Seleccionar pokemon")
+                        }
+                    }
+                    .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
+                    .padding()
+                    .overlay(
+                        Rectangle()
+                            .stroke(Color(UIColor.label))
+                    )
+                })
+                .accentColor(Color(UIColor.label))
+                
+                Spacer(minLength: 30)
                 
                 if selection.selectedTypes.isEmpty {
                     VStack {
-                        Text("Selecciona los tipos para empezar")
+                        Spacer()
+                        Text("Selecciona los tipos\n o un Pokémon para empezar.")
+                            .multilineTextAlignment(.center)
                             .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
-                        Spacer(minLength: 20)
-                        Button(action: {
-                            presenting = true
-                        }, label: {
-                            Text("o selecciona un pokemon.")
-                                .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
-                        })
+                        Spacer()
                     }
                 } else {
                     TypeGridView(types: selection.allTypes)
-                    Button(action: {
-                        presenting = true
-                    }, label: {
-                        Text("Seleccionar pokemon.")
-                            .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
-                    })
                 }
             }
             .animation(.easeInOut)

@@ -15,9 +15,10 @@ struct PokemonSearch: View {
     var body: some View {
         ZStack() {
             if filter.isEmpty {
-                Text("Introduce el nombre para iniciar la búsqueda.")
+                Text("Introduce el nombre\npara iniciar la búsqueda.")
                     .disableAutocorrection(true)
                     .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
+                    .multilineTextAlignment(.center)
             } else {
                 ScrollView {
                     Spacer(minLength: 60)
