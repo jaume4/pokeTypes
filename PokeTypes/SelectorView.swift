@@ -22,6 +22,14 @@ struct SelectorView: View {
         
         ScrollView {
             
+            VStack {
+                Spacer()
+                Text(selectedPokemon ?? "Selecciona los tipos o un Pokémon.")
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Spacer()
+            }
+            
             LazyVStack{
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 120, maximum: 300))]) {
                     ForEach(items) { type in
@@ -39,16 +47,13 @@ struct SelectorView: View {
                 Button(action: {
                     presenting = true
                 }, label: {
-                    Group {
-                        if let name = selectedPokemon {
-                            Text(name)
-                        } else {
-                            Text("Seleccionar pokemon")
-                        }
+                    HStack {
+                        Text("Seleccionar pokémon")
+                        Image(systemName: "chevron.down")
                     }
                     .padding()
                     .overlay(
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 20)
                             .stroke(Color(UIColor.label))
                     )
                 })
@@ -56,14 +61,7 @@ struct SelectorView: View {
                 
                 Spacer(minLength: 30)
                 
-                if selection.selectedTypes.isEmpty {
-                    VStack {
-                        Spacer()
-                        Text("Selecciona los tipos\n o un Pokémon para empezar.")
-                            .multilineTextAlignment(.center)
-                        Spacer()
-                    }
-                } else {
+                if !selection.selectedTypes.isEmpty {
                     TypeGridView(types: selection.allTypes)
                 }
             }
