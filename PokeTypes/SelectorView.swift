@@ -82,6 +82,8 @@ struct SelectorView: View {
                     }
                 }
             }
+            .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
         }
     }
 }

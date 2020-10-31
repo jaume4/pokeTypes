@@ -23,11 +23,20 @@ struct PokemonSearch: View {
                     Spacer(minLength: 60)
                     PokemonFilteredView(filter: filter, action: action)
                         .animation(.spring())
+                        .padding()
                 }
+                .simultaneousGesture(DragGesture().onChanged { _ in
+                    UIApplication.shared.windows.first?.endEditing(true)
+                })
+                
             }
             
             VStack {
                 TextField("Búsqueda", text: $filter)
+                    .onAppear {
+                        UIApplication.shared.windows.first?.findTextfield()?.becomeFirstResponder()
+                    }
+                    
                     .padding()
                     
                     
@@ -41,9 +50,9 @@ struct PokemonSearch: View {
                             .edgesIgnoringSafeArea(.top))
                 Spacer()
             }
+            .padding()
             
         }
-        .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
     }
     
 }
