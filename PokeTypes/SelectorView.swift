@@ -90,13 +90,23 @@ struct SelectorView: View {
 }
 
 struct SelectorView_Previews: PreviewProvider {
+    
+    static var selectedTypes: TypeSelector {
+        let selector = TypeSelector()
+        let types: [PokemonType] = try! PersistenceController.shared.container.viewContext.fetch(PokemonType.fetchRequest())
+        selector.selectedTypes = [types[0], types[1]]
+        return selector
+    }
+    
     static var previews: some View {
         Group {
             SelectorView()
-                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
             SelectorView()
                 .preferredColorScheme(.dark)
-                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            SelectorView(selection: selectedTypes, presenting: false, selectedPokemon: nil)
+            SelectorView(selection: selectedTypes, presenting: false, selectedPokemon: nil)
+                .preferredColorScheme(.dark)
         }
+        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }

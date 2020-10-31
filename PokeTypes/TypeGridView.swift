@@ -65,18 +65,23 @@ struct TypeGridView: View {
 
 struct TypeGridView_Previews: PreviewProvider {
     
-    static let fetchTypes: NSFetchRequest<PokemonType> = PokemonType.fetchRequest()
-    static let pokemons = try! PersistenceController.shared.container.viewContext.fetch(fetchTypes)
+    static var typeSelector: TypeSelector {
+        let selector = TypeSelector()
+        let types: [PokemonType] = try! PersistenceController.shared.container.viewContext.fetch(PokemonType.fetchRequest())
+        selector.selectedTypes = [types[0], types[1]]
+        return selector
+    }
     
     static var previews: some View {
         Group {
             ScrollView {
-                TypeGridView(types: [(.normal, pokemons)])
+                TypeGridView(types: typeSelector.allTypes)
             }
             ScrollView {
-                TypeGridView(types: [(.normal, pokemons)])
+                TypeGridView(types: typeSelector.allTypes)
             }
             .preferredColorScheme(.dark)
         }
+        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
