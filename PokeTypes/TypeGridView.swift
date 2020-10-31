@@ -15,12 +15,12 @@ enum DamageType {
     var title: String {
         switch self {
         
-        case .superWeak: return "Superdébil"
-        case .weak: return "Débil"
-        case .normal: return "Normal"
-        case .strong: return "Resistente"
-        case .superStrong: return "Superresistente"
-        case .inmune: return "Inmune"
+        case .superWeak: return "Supereficaz x4"
+        case .weak: return "Supereficaz x2"
+        case .normal: return "Eficaz"
+        case .strong: return "Poco eficaz x1/2"
+        case .superStrong: return "Poco eficaz x1/4"
+        case .inmune: return "Sin efecto"
         }
     }
 }
