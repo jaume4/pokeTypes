@@ -37,16 +37,16 @@ struct TypeGridView: View {
                 ForEach(types, id: \.damage.title) { tier in
                     
                     Section(header:
-                                Text(tier.damage.title)
-                                .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body)),
-                            footer: Rectangle()
-                                .frame(maxWidth: .infinity, maxHeight: 2)
+                                Text(tier.damage.title),
+                            footer:
+                                LinearGradient(gradient: Gradient(colors: [.clear, Color(UIColor.label), Color(UIColor.label), Color(UIColor.label), .clear]), startPoint: .leading, endPoint: .trailing)
+                                .frame(maxWidth: .infinity, maxHeight: 0.5)
+                                .opacity(0.5)
                     ) {
                         
                         
                         if tier.types.isEmpty {
                             Text("-")
-                                .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                                 .padding(6)
                         } else {
                             ForEach(tier.types) { type in
@@ -82,6 +82,7 @@ struct TypeGridView_Previews: PreviewProvider {
             }
             .preferredColorScheme(.dark)
         }
+        .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
         .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }

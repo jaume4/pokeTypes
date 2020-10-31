@@ -14,6 +14,7 @@ struct PokeTypesApp: App {
     var body: some Scene {
         WindowGroup {
             SelectorView()
+                .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

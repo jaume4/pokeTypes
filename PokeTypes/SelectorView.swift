@@ -46,7 +46,6 @@ struct SelectorView: View {
                             Text("Seleccionar pokemon")
                         }
                     }
-                    .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                     .padding()
                     .overlay(
                         Rectangle()
@@ -62,7 +61,6 @@ struct SelectorView: View {
                         Spacer()
                         Text("Selecciona los tipos\n o un Pokémon para empezar.")
                             .multilineTextAlignment(.center)
-                            .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                         Spacer()
                     }
                 } else {
@@ -71,6 +69,7 @@ struct SelectorView: View {
             }
             .animation(.easeInOut)
         }
+        .padding([.leading, .trailing], 6)
         .sheet(isPresented: $presenting) {
             PokemonSearch(filter: "") { [weak selection] pokemon in
                 presenting = false
@@ -107,6 +106,7 @@ struct SelectorView_Previews: PreviewProvider {
             SelectorView(selection: selectedTypes, presenting: false, selectedPokemon: nil)
                 .preferredColorScheme(.dark)
         }
+        .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
         .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }

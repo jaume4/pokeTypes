@@ -16,7 +16,6 @@ struct PokemonView: View {
     var body: some View {
         
         Text(name)
-            .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
             .foregroundColor(.white)
             .padding(6)
             .background(
@@ -42,5 +41,6 @@ struct PokemonView_Previews: PreviewProvider {
         VStack {
             PokemonView(name: "Bulbasaur", color1: Color("\(0)"), color2: Color("\(18)"))
         }
+        .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
     }
 }

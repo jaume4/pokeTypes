@@ -17,7 +17,6 @@ struct PokemonSearch: View {
             if filter.isEmpty {
                 Text("Introduce el nombre\npara iniciar la búsqueda.")
                     .disableAutocorrection(true)
-                    .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                     .multilineTextAlignment(.center)
             } else {
                 ScrollView {
@@ -28,7 +27,6 @@ struct PokemonSearch: View {
             
             VStack {
                 TextField("Búsqueda", text: $filter)
-                    .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
                     .padding()
                     
                     
@@ -92,5 +90,6 @@ struct PokemonSearch_Previews: PreviewProvider {
                         .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                 }
         }
+        .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
     }
 }

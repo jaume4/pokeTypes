@@ -16,7 +16,6 @@ struct CapsuleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(selected ?  Color(UIColor.systemBackground) : .white)
-            .font(.custom("PKMN RBYGSC", size: 14, relativeTo: .body))
             .padding(6)
             .background(
                 Group {
@@ -70,6 +69,7 @@ struct CapsuleModifier_Previews: PreviewProvider {
             }
             .preferredColorScheme(.dark)
         }
+        .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
     }
 }
 
