@@ -22,6 +22,7 @@ struct PokemonSearch: View {
                 ScrollView {
                     Spacer(minLength: 60)
                     PokemonFilteredView(filter: filter, action: action)
+                        .animation(.spring())
                 }
             }
             
