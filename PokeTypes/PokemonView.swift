@@ -52,5 +52,6 @@ struct PokemonView_Previews: PreviewProvider {
             PokemonView(pokemon)
         }
         .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
+        .padding()
     }
 }
