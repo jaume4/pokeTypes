@@ -55,13 +55,11 @@ struct PokemonFilteredView: View {
     var body: some View {
         LazyVStack {
             ForEach(fetchRequest.wrappedValue, id: \.name) { pokemon in
-                HStack {
-                    PokemonView(name: pokemon.name, color1: Color("\(pokemon.type1.id)"), color2: pokemon.type2.map { Color("\($0.id)") })
-                        .onTapGesture {
-                            action?(pokemon)
-                        }
-                    Spacer()
-                }
+                PokemonView(pokemon)
+                    .onTapGesture {
+                        action?(pokemon)
+                    }
+                    .padding([.top], 2)
             }
         }
     }
@@ -75,20 +73,15 @@ struct PokemonFilteredView: View {
 struct PokemonSearch_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            Color(UIColor.systemBackground)
-                .sheet(isPresented: .constant(true)) {
-                    PokemonSearch(filter: "")
-                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-                    
-                    
-                }
+            PokemonSearch(filter: "")
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
             
-            Color(UIColor.systemBackground)
+            PokemonSearch(filter: "char")
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            
+            PokemonSearch(filter: "")
+                .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                 .preferredColorScheme(.dark)
-                .sheet(isPresented: .constant(true)) {
-                    PokemonSearch(filter: "")
-                        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-                }
         }
         .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
     }

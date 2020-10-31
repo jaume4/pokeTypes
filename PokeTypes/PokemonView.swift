@@ -9,37 +9,47 @@ import SwiftUI
 
 struct PokemonView: View {
     
-    let name: String
-    let color1: Color
-    let color2: Color?
+    let pokemon: Pokemon
+    static var formatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 3
+        return formatter
+    }
     
     var body: some View {
         
-        Text(name)
-            .foregroundColor(.white)
-            .padding(6)
-            .background(
-                Group {
-                    if let color2 = color2 {
-                        LinearGradient(gradient: Gradient(stops: [Gradient.Stop(color:  color1, location: 0), Gradient.Stop(color: color2, location: 1)]), startPoint: .top, endPoint: .bottom)
-                    } else {
-                        RadialGradient(gradient: Gradient(stops: [Gradient.Stop(color:  color1, location: 0), Gradient.Stop(color: color1.opacity(0.5), location: 0.9)]), center: .center, startRadius: 0, endRadius: 100)
-                    }
-                }
-            )
-            .cornerRadius(15)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.primary, lineWidth: 1)
-            )
+        HStack {
+        
+            Text(PokemonView.formatter.string(from: NSNumber(value: pokemon.pokedex))! + "  " + pokemon.name)
+            
+            Spacer()
+            
+            Text(pokemon.type1.name)
+                .modifier(CapsuleModifier(selected: false, id: pokemon.type1.id))
+            
+            if let type2 = pokemon.type2 {
+                Text(type2.name)
+                    .modifier(CapsuleModifier(selected: false, id: type2.id))
+            }
+            
+        }
+    }
+    
+    init(_ pokemon: Pokemon) {
+        self.pokemon = pokemon
     }
 }
 
 struct PokemonView_Previews: PreviewProvider {
     
+    static var pokemon: Pokemon {
+        let pokemons: [Pokemon] = try! PersistenceController.shared.container.viewContext.fetch(Pokemon.fetchRequest())
+        return pokemons.first(where: { $0.type2 != nil })!
+    }
+
     static var previews: some View {
         VStack {
-            PokemonView(name: "Bulbasaur", color1: Color("\(0)"), color2: Color("\(18)"))
+            PokemonView(pokemon)
         }
         .font(.custom("PKMN RBYGSC", size: 12, relativeTo: .body))
     }
