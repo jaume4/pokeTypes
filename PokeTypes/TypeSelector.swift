@@ -7,10 +7,27 @@
 
 import SwiftUI
 
+struct PokemonTierType: Hashable {
+    let name: String
+    let id: Int16
+}
+
+struct PokemonTier: Hashable, Identifiable {
+    let damage: DamageType
+    let types: [PokemonTierType]
+    
+    var id: Int {
+        hashValue
+    }
+
+}
+
 final class TypeSelector: ObservableObject {
     
     @Published var selectedName: String?
     @Published var selectedTypes: ContiguousArray<PokemonType> = []
+    @Published var tiers: [PokemonTier] = []
+    @Published var selectedTier: PokemonTier?
     
     var type1: PokemonType? {
         selectedTypes.first
@@ -21,6 +38,19 @@ final class TypeSelector: ObservableObject {
     }
     
     func select(type: PokemonType) {
+
+        defer {
+            tiers = [
+                PokemonTier(damage: .superWeak, types: Array(superWeak).sorted().map { PokemonTierType(name: $0.name, id: $0.id) }),
+                PokemonTier(damage: .weak, types: Array(weak).sorted().map { PokemonTierType(name: $0.name, id: $0.id) }),
+                PokemonTier(damage: .normal, types: Array(normal).sorted().map { PokemonTierType(name: $0.name, id: $0.id) }),
+                PokemonTier(damage: .strong, types: Array(strong).sorted().map { PokemonTierType(name: $0.name, id: $0.id) }),
+                PokemonTier(damage: .superStrong, types: Array(superStrong).sorted().map { PokemonTierType(name: $0.name, id: $0.id) }),
+                PokemonTier(damage: .inmune, types: Array(inmune).sorted().map { PokemonTierType(name: $0.name, id: $0.id) })
+            ]
+            
+            print(tiers.map{ $0.types.map{ $0.name } })
+        }
         
         if let index = selectedTypes.firstIndex(where: {$0 == type}) { //Remove if already selected
             selectedTypes.remove(at: index)
@@ -35,17 +65,7 @@ final class TypeSelector: ObservableObject {
     
     func removeSelection() {
         selectedTypes.removeAll()
-    }
-    
-    var allTypes: [(damage: DamageType, types: [PokemonType])] {
-        return [
-            (.superWeak, Array(superWeak).sorted()),
-            (.weak, Array(weak).sorted()),
-            (.normal, Array(normal).sorted()),
-            (.strong, Array(strong).sorted()),
-            (.superStrong, Array(superStrong).sorted()),
-            (.inmune, Array(inmune).sorted())
-        ]
+        tiers = []
     }
     
     private var superWeak: Set<PokemonType> {

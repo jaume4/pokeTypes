@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum SelectorPresentedSheet {
+    case searchPokemon, pokemonList
+}
+
 struct SelectorView: View {
     
     @FetchRequest(
@@ -17,6 +21,7 @@ struct SelectorView: View {
     @StateObject var selection = TypeSelector()
     @State var presenting = false
     @State var selectedPokemon: String?
+    @State var presentedSheet = SelectorPresentedSheet.searchPokemon
     
     var body: some View {
         
@@ -45,6 +50,7 @@ struct SelectorView: View {
                 Spacer(minLength: 40)
                 
                 Button(action: {
+                    presentedSheet = .searchPokemon
                     presenting = true
                 }, label: {
                     HStack {
@@ -62,23 +68,33 @@ struct SelectorView: View {
                 Spacer(minLength: 30)
                 
                 if !selection.selectedTypes.isEmpty {
-                    TypeGridView(types: selection.allTypes)
+                    TypeGridView(selection: selection, showPokemons: $presentedSheet, presenting: $presenting)
                 }
             }
             .animation(.easeInOut)
         }
         .padding([.leading, .trailing], 6)
         .sheet(isPresented: $presenting) {
-            PokemonSearch(filter: "") { [weak selection] pokemon in
-                presenting = false
-                let transaction = Transaction()
-                
-                withTransaction(transaction) {
-                    selectedPokemon = pokemon.name
-                    selection?.removeSelection()
-                    selection?.select(type: pokemon.type1)
-                    if let type2 = pokemon.type2 {
-                        selection?.select(type: type2)
+            Group {
+                switch presentedSheet {
+                case .searchPokemon:
+                    PokemonSearch(filter: "") { [weak selection] pokemon in
+                        presenting = false
+                        let transaction = Transaction()
+                        
+                        withTransaction(transaction) {
+                            selectedPokemon = pokemon.name
+                            selection?.removeSelection()
+                            selection?.select(type: pokemon.type1)
+                            if let type2 = pokemon.type2 {
+                                selection?.select(type: type2)
+                            }
+                        }
+                    }
+                case .pokemonList:
+                    ScrollView {
+                        PokemonFilteredView(filter: selection.selectedTier?.types.map{ $0.id } ?? [])
+                            .padding()
                     }
                 }
             }

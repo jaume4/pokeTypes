@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 
-enum DamageType {
+enum DamageType: Hashable {
     case superWeak, weak, normal, strong, superStrong, inmune
     
     var title: String {
@@ -27,14 +27,16 @@ enum DamageType {
 
 struct TypeGridView: View {
     
-    let types: [(damage: DamageType, types: [PokemonType])]
+    @ObservedObject var selection: TypeSelector
+    @Binding var showPokemons: SelectorPresentedSheet
+    @Binding var presenting: Bool
     
     var body: some View {
         
         VStack{
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 120, maximum: 300))]) {
                 
-                ForEach(types, id: \.damage.title) { tier in
+                ForEach(selection.tiers) { tier in
                     
                     Section(header:
                                 Text(tier.damage.title),
@@ -45,14 +47,21 @@ struct TypeGridView: View {
                     ) {
                         
                         
+                    
                         if tier.types.isEmpty {
                             Text("-")
                                 .padding(6)
                         } else {
-                            ForEach(tier.types) { type in
+                            ForEach(tier.types, id: \.hashValue) { type in
                                 Text(type.name)
                                     .foregroundColor(.white)
                                     .modifier(CapsuleModifier(selected: false, id: type.id))
+                                    .onTapGesture {
+                                        showPokemons = .pokemonList
+                                        presenting = true
+                                        selection.selectedTier = selection.tiers.first(where: { $0.types.contains(type) })
+                                    }
+
                             }
                         }
                     }
@@ -75,10 +84,10 @@ struct TypeGridView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ScrollView {
-                TypeGridView(types: typeSelector.allTypes)
+                TypeGridView(selection: typeSelector, showPokemons: .constant(.searchPokemon), presenting: .constant(false))
             }
             ScrollView {
-                TypeGridView(types: typeSelector.allTypes)
+                TypeGridView(selection: typeSelector, showPokemons: .constant(.searchPokemon), presenting: .constant(false))
             }
             .preferredColorScheme(.dark)
         }

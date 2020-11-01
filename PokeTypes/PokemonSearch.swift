@@ -57,29 +57,6 @@ struct PokemonSearch: View {
     
 }
 
-struct PokemonFilteredView: View {
-    
-    var fetchRequest: FetchRequest<Pokemon>
-    var action: ((Pokemon) -> ())?
-    
-    var body: some View {
-        LazyVStack {
-            ForEach(fetchRequest.wrappedValue, id: \.name) { pokemon in
-                PokemonView(pokemon)
-                    .onTapGesture {
-                        action?(pokemon)
-                    }
-                    .padding([.top], 2)
-            }
-        }
-    }
-    
-    init(filter: String, action: ((Pokemon) -> ())?) {
-        self.action = action
-        fetchRequest = FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Pokemon.pokedex, ascending: true)], predicate: NSPredicate(format: "name CONTAINS[c] %@", filter))
-    }
-}
-
 struct PokemonSearch_Previews: PreviewProvider {
     static var previews: some View {
         Group {
